@@ -9,4 +9,5 @@ urlpatterns = (
     path("album/delete/<int:id>", views.delete_album, name="delete album"),
     path("profile/details/", views.profile_details, name="profile details"),
     path("profile/delete/", views.delete_profile, name="delete profile"),
+    path("profile/add/", views.add_profile, name="add profile"),
 )

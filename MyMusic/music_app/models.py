@@ -1,7 +1,7 @@
 from django.core.validators import MinLengthValidator
 from django.db import models
 
-from MyMusic.music_app.validators import NameContainsOnlyAlphaNumericAndUnderscore, PositiveFloatValidator
+from MyMusic.music_app.validators import validate_string_alphanumeric, PositiveFloatValidator
 
 
 class Profile(models.Model):
@@ -11,7 +11,7 @@ class Profile(models.Model):
         null=False,
         validators=[
             MinLengthValidator(2),
-            NameContainsOnlyAlphaNumericAndUnderscore(),
+            validate_string_alphanumeric,
         ]
     )
 

@@ -71,7 +71,6 @@ class Migration(migrations.Migration):
                         max_length=15,
                         validators=[
                             django.core.validators.MinLengthValidator(2),
-                            MyMusic.music_app.validators.NameContainsOnlyAlphaNumericAndUnderscore(),
                         ],
                     ),
                 ),

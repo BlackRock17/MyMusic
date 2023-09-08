@@ -2,14 +2,10 @@ from django.core.exceptions import ValidationError
 from django.utils.deconstruct import deconstructible
 
 
-@deconstructible
-class NameContainsOnlyAlphaNumericAndUnderscore:
-    def __call__(self, value):
-        if not (value.isalnum() or '_' == value):
+def validate_string_alphanumeric(value):
+    for ch in value:
+        if not ch.isalnum() and ch != "_":
             raise ValidationError("Ensure this value contains only letters, numbers, and underscore.")
-
-    def __eq__(self, other):
-        return True
 
 
 @deconstructible

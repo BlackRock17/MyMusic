@@ -1,7 +1,22 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+
+from MyMusic.music_app.forms import ProfileCreateForm
+from MyMusic.music_app.models import Profile
+
+
+def get_profile():
+    try:
+        return Profile.objects.get()
+
+    except:
+        return None
 
 
 def home_page(request):
+    profile = get_profile()
+    if profile is None:
+        return redirect('add profile')
+
     return render(request, "web/home-with-profile.html")
 
 
@@ -27,3 +42,20 @@ def profile_details(request):
 
 def delete_profile(request):
     return render(request, "web/profile-delete.html")
+
+
+def add_profile(request):
+    if request.method == "GET":
+        form = ProfileCreateForm()
+    else:
+        form = ProfileCreateForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("home page")
+
+    context = {
+        'form': form,
+    }
+
+    return render(request, "web/home-no-profile.html", context)
+
