@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 
 def home_page(request):
-    return None
+    return render(request, "web/home-with-profile.html")
 
 
 def add_album(request):
