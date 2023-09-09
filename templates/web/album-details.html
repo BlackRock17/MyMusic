@@ -18,8 +18,10 @@
                 <h1>Name: {{ album.Album_Name }}</h1>
                 <h3>Artist: {{ album.Artist }}</h3>
                 <h4>Genre: {{ album.Genre }}</h4>
-                <h4>Price: ${{ album.Price }}</h4>
-                <p>Description: {{ album.Description }}</p>
+                <h4>Price: ${{ album.Price|floatformat:2 }}</h4>
+                {% if album.Description %}
+                    <p>Description: {{ album.Description }}</p>
+                {% endif %}
             </div>
 
             <div class="actionBtn">
